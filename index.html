@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مطعم العريشة | Al-Areesha Restaurant</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700;800&family=Noto+Kufi+Arabic:wght@300;400;600;700&family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-inner">
+    <div class="loader-flame">🔥</div>
+    <div class="loader-text">مطعم العريشة</div>
+    <div class="loader-sub">Al-Areesha Restaurant</div>
+    <div class="loader-bar"><div class="loader-fill"></div></div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header id="header">
+  <div class="header-bg"></div>
+  <div class="header-content">
+    <div class="logo">
+      <div class="logo-icon">🔥</div>
+      <div class="logo-text">
+        <span class="logo-ar">العريشة</span>
+        <span class="logo-en">Al-Areesha</span>
+      </div>
+    </div>
+    <nav class="desktop-nav">
+      <a href="#menu" data-ar="القائمة" data-en="Menu">القائمة</a>
+      <a href="#about" data-ar="عن المطعم" data-en="About">عن المطعم</a>
+      <a href="#contact" data-ar="تواصل معنا" data-en="Contact">تواصل معنا</a>
+    </nav>
+    <div class="header-actions">
+      <button class="lang-btn" id="langBtn">EN</button>
+      <button class="cart-btn" id="cartBtn">
+        <span class="cart-icon">🛒</span>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-tanoor-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-sparks" id="heroSparks"></div>
+  <div class="hero-content">
+    <div class="hero-badge">منذ ١٩٨٢ · Since 1982</div>
+    <h1 class="hero-title">
+      <span class="hero-ar">مطعم وتجهيزات</span>
+      <span class="hero-brand">العريشة</span>
+      <span class="hero-en">Al-Areesha Restaurant</span>
+    </h1>
+    <p class="hero-desc">دجاج تنور العريشة الأصيل · مشويات عراقية · أطباق شرقية فاخرة</p>
+    <p class="hero-desc-en">Authentic Tanoor Chicken · Iraqi Grills · Eastern Cuisine</p>
+    <div class="hero-btns">
+      <a href="#menu" class="btn-primary">
+        <span>اطلب الآن</span>
+        <span class="btn-en">Order Now</span>
+      </a>
+      <a href="tel:+9647XXXXXXXXX" class="btn-secondary">
+        <span>📞 اتصل بنا</span>
+      </a>
+    </div>
+    <div class="hero-info">
+      <div class="hero-info-item">
+        <span class="info-icon">📍</span>
+        <span>بغداد، العراق</span>
+      </div>
+      <div class="hero-info-item">
+        <span class="info-icon">⏰</span>
+        <span>٨ص - ١٢م يومياً</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll-hint">
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- DELIVERY MODE SELECTOR -->
+<section id="mode-selector">
+  <div class="mode-container">
+    <h2 class="mode-title">كيف تريد طلبك؟</h2>
+    <p class="mode-subtitle">How would you like to order?</p>
+    <div class="mode-cards">
+      <div class="mode-card active" data-mode="delivery" onclick="setMode('delivery')">
+        <div class="mode-icon">🛵</div>
+        <div class="mode-label-ar">توصيل</div>
+        <div class="mode-label-en">Delivery</div>
+        <div class="mode-desc">نوصل لباب بيتك</div>
+      </div>
+      <div class="mode-card" data-mode="dine" onclick="setMode('dine')">
+        <div class="mode-icon">🪑</div>
+        <div class="mode-label-ar">تناول داخل المطعم</div>
+        <div class="mode-label-en">Dine In</div>
+        <div class="mode-desc">استمتع بأجوائنا الأصيلة</div>
+      </div>
+      <div class="mode-card" data-mode="pickup" onclick="setMode('pickup')">
+        <div class="mode-icon">🏠</div>
+        <div class="mode-label-ar">استلام</div>
+        <div class="mode-label-en">Pickup</div>
+        <div class="mode-desc">استلم طلبك من المطعم</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU SECTION -->
+<section id="menu">
+  <div class="menu-header">
+    <div class="menu-header-decoration"></div>
+    <h2 class="section-title">
+      <span class="title-ar">قائمة الطعام</span>
+      <span class="title-en">Our Menu</span>
+    </h2>
+  </div>
+
+  <!-- CATEGORY TABS -->
+  <div class="tabs-wrapper" id="tabsWrapper">
+    <div class="tabs-scroll">
+      <button class="tab active" data-cat="breakfast" onclick="showCat('breakfast')">
+        <span class="tab-icon">🍳</span>
+        <span class="tab-ar">ريوكات</span>
+        <span class="tab-en">Breakfast</span>
+      </button>
+      <button class="tab" data-cat="grills" onclick="showCat('grills')">
+        <span class="tab-icon">🔥</span>
+        <span class="tab-ar">مشويات عراقية</span>
+        <span class="tab-en">Iraqi Grills</span>
+      </button>
+      <button class="tab" data-cat="grill-corner" onclick="showCat('grill-corner')">
+        <span class="tab-icon">🍗</span>
+        <span class="tab-ar">ركن المشويات</span>
+        <span class="tab-en">Grill Corner</span>
+      </button>
+      <button class="tab" data-cat="lunch" onclick="showCat('lunch')">
+        <span class="tab-icon">🍖</span>
+        <span class="tab-ar">غداء وعشاء</span>
+        <span class="tab-en">Lunch & Dinner</span>
+      </button>
+      <button class="tab" data-cat="eastern" onclick="showCat('eastern')">
+        <span class="tab-icon">🐑</span>
+        <span class="tab-ar">الأطباق الشرقية</span>
+        <span class="tab-en">Eastern Dishes</span>
+      </button>
+      <button class="tab" data-cat="fish" onclick="showCat('fish')">
+        <span class="tab-icon">🐟</span>
+        <span class="tab-ar">الأسماك</span>
+        <span class="tab-en">Fish</span>
+      </button>
+      <button class="tab" data-cat="fast" onclick="showCat('fast')">
+        <span class="tab-icon">🍔</span>
+        <span class="tab-ar">أكلات سريعة</span>
+        <span class="tab-en">Fast Food</span>
+      </button>
+      <button class="tab" data-cat="salads" onclick="showCat('salads')">
+        <span class="tab-icon">🥗</span>
+        <span class="tab-ar">السلطات</span>
+        <span class="tab-en">Salads</span>
+      </button>
+      <button class="tab" data-cat="coffee" onclick="showCat('coffee')">
+        <span class="tab-icon">☕</span>
+        <span class="tab-ar">قهوة ومشروبات</span>
+        <span class="tab-en">Coffee & Drinks</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- MENU CONTENT -->
+  <div class="menu-content" id="menuContent">
+
+    <!-- BREAKFAST / REYOKAT -->
+    <div class="cat-panel active" id="cat-breakfast">
+      <div class="cat-hero">
+        <div class="cat-hero-bg" style="background: linear-gradient(135deg, #8B4513 0%, #D2691E 50%, #F4A460 100%)"></div>
+        <div class="cat-hero-content">
+          <h3 class="cat-title">ريوكات <span class="cat-title-en">Breakfast</span></h3>
+          <p class="cat-subtitle">ابدأ يومك بأصالة عراقية</p>
+        </div>
+      </div>
+
+      <div class="special-offer-card">
+        <div class="offer-badge">🌟 عرض خاص</div>
+        <h4>سيت منيو الأفطار</h4>
+        <p class="offer-sub">(٣ - ٤ أشخاص)</p>
+        <div class="offer-items">
+          <span>مخلمة</span><span>باسطرمة بالبيض</span><span>جلفراي</span>
+          <span>كباب عروك بالبيض</span><span>بيض مقلي</span>
+          <span>جبن</span><span>مربى</span><span>كاهي</span><span>قيمر</span>
+          <span>جاي</span><span>خبز</span><span>سلطة</span>
+        </div>
+        <div class="offer-price">
+          <span class="price-num">29,000</span>
+          <span class="price-cur">دينار</span>
+        </div>
+        <button class="add-btn" onclick="addToCart('سيت منيو الأفطار (٣-٤ أشخاص)', 29000, '🍳')">+ أضف للسلة</button>
+      </div>
+
+      <div class="items-grid">
+        <div class="menu-item" data-aos>
+          <div class="item-emoji">🥘</div>
+          <div class="item-info">
+            <h4 class="item-name">مخلمة</h4>
+            <p class="item-desc">طبق عراقي أصيل من الإفطار</p>
+            <div class="item-price">6,000 <span>دينار</span></div>
+          </div>
+          <button class="add-btn-sm" onclick="addToCart('مخلمة', 6000, '🥘')">+</button>
+        </div>
+        <div class="menu-item" data-aos>
+          <div class="item-emoji">🥩</div>
+          <div class="item-info">
+            <h4 class="item-name">باسطرمة بالبيض</h4>
+            <p class="item-desc">باسطرمة مع بيض مقلي</p>
+            <div class="item-price">6,000 <span>دينار</span></div>
+          </div>
+          <button class="add-btn-sm" onclick="addToCart('باسطرمة بالبيض', 6000, '🥩')">+</button>
+        </div>
+        <div class="menu-item" data-aos>
+          <div class="item-emoji">🍳</div>
+          <div class="item-info">
+            <h4 class="item-name">جلفراي</h4>
+            <p class="item-desc">طبق عراقي تقليدي</p>
+            <div class="item-price">6,000 <span>دينار</span></div>
+          </div>
+          <button class="add-btn-sm" onclick="addToCart('جلفراي', 6000, '🍳')">+</button>
+        </div>
+        <div class="menu-item" data-aos>
+          <div class="item-emoji">🥙</div>
+          <div class="item-info">
+            <h4 class="item-name">كباب عروك بالبيض</h4>
+            <p class="item-desc">كباب عروك مع بيض</p>
+            <div class="item-price">6,000 <span>دينار</span></div>
+          </div>
+          <button class="add-btn-sm" onclick="addToCart('كباب عروك بالبيض', 6000, '🥙')">+</button>
+        </div>
+        <div class="menu-item" data-aos>
+          <div class="item-emoji">🍳</div>
+          <div class="item-info">
+            <h4 class="item-name">بيض مقلي - عيون / أوملية</h4>
+            <p class="item-desc">بيض طازج مقلي</p>
+            <div class="item-price">4,000 <span>دينار</span></div>
+          </div>
+          <button class="add-btn-sm" onclick="addToCart('بيض مقلي', 4000, '🍳')">+</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- IRAQI GRILLS -->
+    <div class="cat-panel" id="cat-grills">
+      <div class="cat-hero">
+        <div class="cat-hero-bg" style="background: linear-gradient(135deg, #1a0a00 0%, #8B2500 50%, #D2691E 100%)"></div>
+        <div class="cat-hero-content">
+          <h3 class="cat-title">مشويات عراقية <span class="cat-title-en">Iraqi Grills</span></h3>
+          <p class="cat-subtitle">على الجمر الأصيل</p>
+        </div>
+      </div>
+
+      <div class="grills-note">
+        <div class="note-icon">🔥</div>
+        <p>جميع المشويات تُقدم مع طبق من البرغل والطماطة وبصل مشوي والبطاطا المقلية</p>
+        <p class="note-en">All grills served with bulgur, tomatoes, grilled onions & fried potatoes</p>
+      </div>
+
+      <div class="grills-table">
+        <div class="grills-header">
+          <span>الصنف</span>
+          <span>نفر <small>(٤ شياش)</small></span>
+          <span>نص نفر <small>(٢ شياش)</small></span>
+        </div>
+        <div class="grill-row" data-aos>
+          <div class="grill-info">
+            <span class="grill-emoji">🐑</span>
+            <div>
+              <strong>كباب لحم غنم عراقي</strong>
+            </div>
+          </div>
+          <div class="grill-price-col">
+            <span class="price-tag">18,000</span>
+            <button class="add-btn-sm" onclick="addToCart('كباب لحم غنم عراقي - نفر', 18000, '🐑')">+</button>
+          </div>
+          <div class="grill-price-col">
+            <span class="price-tag">9,000</span>
+            <button class="add-btn-sm" onclick="addToCart('كباب لحم غنم عراقي - نص', 9000, '🐑')">+</button>
+          </div>
+        </div>
+        <div class="grill-row" data-aos>
+          <div class="grill-info">
+            <span class="grill-emoji">🍗</span>
+            <div>
+              <strong>كباب دجاج</strong>
+            </div>
+          </div>
+          <div class="grill-price-col">
+            <span class="price-tag">14,000</span>
+            <button class="add-btn-sm" onclick="addToCart('كباب دجاج - نفر', 14000, '🍗')">+</button>
+          </div>
+          <div class="grill-price-col">
+            <span class="price-tag">7,000</span>
+            <button class="add-btn-sm" onclick="addToCart('كباب دجاج - نص', 7000, '🍗')">+</button>
+          </div>
+        </div>
+        <div class="grill-row" data-aos>
+          <div class="grill-info">
+            <span class="grill-emoji">🥩</span>
+            <div>
+              <strong>تكة لحم / معلاك</strong>
+            </div>
+          </div>
+          <div class="grill-price-col">
+            <span class="price-tag">18,000</span>
+            <button class="add-btn-sm" onclick="addToCart('تكة لحم/معلاك - نفر', 18000, '🥩')">+</button>
+          </div>
+          <div class="grill-price-col">
+            <span class="price-tag">9,000</span>
+            <button class="add-btn-sm" onclick="addToCart('تكة لحم/معلاك - نص', 9000, '🥩')">+</button>
+          </div>
+        </div>
+        <div class="grill-row" data-aos>
+          <div class="grill-info">
+            <span class="grill-emoji">🍗</span>
+            <div>
+              <strong>تكة دجاج</strong>
+            </div>
+          </div>
+          <div class="grill-price-col">
+            <span class="price-tag">14,000</span>
+            <button class="add-btn-sm" onclick="addToCart('تكة دجاج - نفر', 14000, '🍗')">+</button>
+          </div>
+          <div class="grill-price-col">
+            <span class="price-tag">7,000</span>
+            <button class="add-btn-sm" onclick="addToCart('تكة دجاج - نص', 7000, '🍗')">+</button>
+          </div>
+        </div>
+        <div class="grill-row" data-aos>
+          <div class="grill-info">
+            <span class="grill-emoji">🍗</span>
+            <div>
+              <strong>أجنحة دجاج</strong>
+            </div>
+          </div>
+          <div class="grill-price-col">
+            <span class="price-tag">10,000</span>
+            <button class="add-btn-sm" onclick="addToCart('أجنحة دجاج - نفر', 10000, '🍗')">+</button>
+          </div>
+          <div class="grill-price-col">
+            <span class="price-tag">6,000</span>
+            <button class="add-btn-sm" onclick="addToCart('أجنحة دجاج - نص', 6000, '🍗')">+</button>
+          </div>
+        </div>
+        <div class="grill-row" data-aos>
+          <div class="grill-info">
+            <span class="grill-emoji">🔥</span>
+            <div>
+              <strong>نفر مشكل</strong>
+            </div>
+          </div>
+          <div class="grill-price-col">
+            <span class="price-tag">18,000</span>
+            <button class="add-btn-sm" onclick="addToCart('نفر مشكل - نفر', 18000, '🔥')">+</button>
+          </div>
+          <div class="grill-price-col">
+            <span class="price-tag">9,000</span>
+            <button class="add-btn-sm" onclick="addToCart('نفر مشكل - نص', 9000, '🔥')">+</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- SPECIAL ITEMS -->
+      <div class="special-cards">
+        <div class="special-card mosul" data-aos>
+          <div class="special-card-badge">موصلية</div>
+          <h4>كبة موصلية مشوية على الفحم</h4>
+          <p>كبة موصلية بلحم الغنم العراقي وبالنكهة العراقية</p>
+          <div class="special-prices">
+            <div>
+              <span>وسط</span>
+              <span class="price-tag">10,000 دينار</span>
+              <button class="add-btn-sm" onclick="addToCart('كبة موصلية وسط', 10000, '🧆')">+</button>
+            </div>
+            <div>
+              <span>كبيرة</span>
+              <span class="price-tag">11,000 دينار</span>
+              <button class="add-btn-sm" onclick="addToCart('كبة موصلية كبيرة', 11000, '🧆')">+</button>
+            </div>
+          </div>
+        </div>
+        <div class="special-card arais" data-aos>
+          <h4>عرايس لحم مشوية على الفحم</h4>
+          <p>خبز محشو باللحم المشوي</p>
+          <div class="special-prices">
+            <span class="price-tag">15,000 دينار</span>
+            <button class="add-btn-sm" onclick="addToCart('عرايس لحم مشوية', 15000, '🥙')">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="delivery-special" data-aos>
+        <div class="ds-icon">🚀</div>
+        <div class="ds-content">
+          <h4>دجاجة مسحب مشوية</h4>
+          <p>دجاج عراقي مسحب من العظم بتتبيلة العريشة</p>
+          <div class="ds-prices">
+            <div>
+              <span>نفر كامل</span>
+              <span class="price-tag">18,000 دينار</span>
+              <button class="add-btn-sm" onclick="addToCart('دجاجة مسحب - نفر', 18000, '🍗')">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GRILL CORNER -->
+    <div class="cat-panel" id="cat-grill-corner">
+      <div class="cat-hero">
+        <div class="cat-hero-bg" style="background: linear-gradient(135deg, #2d1b00 0%, #7a3500 50%, #c9622a 100%)"></div>
+        <div class="cat-hero-content">
+          <h3 class="cat-title">ركن المشويات <span class="cat-title-en">Grill Corner</span></h3>
+          <p class="cat-subtitle">أشهى الوجبات المشوية</p>
+        </div>
+      </div>
+
+      <div class="items-grid">
+        <div class="menu-item featured" data-aos>
+          <div class="item-emoji">🔥</div>
+          <div class="item-info">
+            <h4 class="item-name">برمه لحم</h4>
+            <p class="item-desc">قيمة الكباب ملفوفة بشرائح اللحم</p>
+            <div class="item-price">9,000 <span>دينار</span></div>
+          </div>
+          <button class="add-btn-sm" onclick="addToCart('برمه لحم', 9000, '🔥')">+</button>
+        </div>
+        <div class="menu-item featured" data-aos>
+          <div class="item-emoji">🥩</div>
+          <div class="item-info">
+            <h4 class="item-name">بقلاوة لحم</h4>
+            <p class="item-desc">طبقات من قيمة الكباب والساج واللية</p>
+            <div class="item-price">9,000 <span>دينار</span></div>
+          </div>
+          <button class="add-btn-sm" onclick="addToCart('بقلاوة لحم', 9000, '🥩')">+</button>
+        </div>
+        <div class="menu-item" data-aos>
+          <div class="item-emoji">🍗</div>
+          <div class="item-info">
+            <h4 class="item-name">دجاج مسحب</h4>
+            <p class="item-desc">دجاج عراقي مسحب من العظم بتتبيلة العريشة</p>
+            <div class="dual-price">
+              <div>
+                <small>دجاجة كاملة</small>
+                <div class="item-price">20,000 <span>دينار</span></div>
+                <button class="add-btn-sm" onclick="addToCart('دجاج مسحب - كامل', 20000, '🍗')">+</button>
+              </div>
+              <div>
+                <small>نص دجاجة</small>
+                <div class="item-price">10,000 <span>دينار</span></div>
+                <button class="add-btn-sm" onclick="addToCart('دجاج مسحب - نص', 10000, '🍗')">+</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="menu-item" data-aos>
+          <div class="item-emoji">🍗</div>
+          <div class="item-info">
+            <h4 class="item-name">دجاج بالعظم على الفحم</h4>
+            <p class="item-desc">دجاج مشوي بالنكهة الأصيلة</p>
+            <div class="dual-price">
+              <div>
+                <small>كامل</small>
+                <div class="item-price">20,000 <span>دينار</span></div>
+                <button class="add-btn-sm" onclick="addToCart('دجاج بالعظم - كامل', 20000, '🍗')">+</button>
+              </div>
+              <div>
+                <small>نص</small>
+                <div class="item-price">10,000 <span>دينار</span></div>
+                <button class="add-btn-sm" onclick="addToCart('دجاج بالعظم - نص', 10000, '🍗')">+</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LUNCH & DINNER -->
+    <div class="cat-panel" id="cat-lunch">
+      <div class="cat-hero">
+        <div class="cat-hero-bg" style="background: linear-gradient(135deg, #3d1c00 0%, #9B4400 50%, #e8a87c 100%)"></div>
+        <div class="cat-hero-content">
+          <h3 class="cat-title">غداء وعشاء <span class="cat-title-en">Lunch & Dinner</span></h3>
+          <p class="cat-subtitle">دجاج التنور الأصيل منذ ١٩٨٢</p>
+        </div>
+      </div>
+
+      <div class="lunch-sections">
+        <!-- TANOOR CHICKEN -->
+        <div class="lunch-section">
+          <div class="section-label">🔥 دجاج بالتنور</div>
+          <div class="items-grid">
+            <div class="menu-item" data-aos>
+              <div class="item-emoji">🍗</div>
+              <div class="item-info">
+                <h4 class="item-name">نصف دجاجة</h4>
+                <p class="item-desc">نصف دجاجة مشوية بالتنور بتتبيلة ونكهة مميزة مع الخبز</p>
+                <div class="item-price">9,000 <span>دينار</span></div>
+              </div>
+              <button class="add-btn-sm" onclick="addToCart('نصف دجاجة تنور', 9000, '🍗')">+</button>
+            </div>
+            <div class="menu-item" data-aos>
+              <div class="item-emoji">🍗</div>
+              <div class="item-info">
+                <h4 class="item-name">نصف دجاجة مع طبق تمن ومرق</h4>
+                <p class="item-desc">نصف دجاجة بالتنور مع طبق تمن ومرق وخبز</p>
+                <div class="item-price">15,000 <span>دينار</span></div>
+              </div>
+              <button class="add-btn-sm" onclick="addToCart('نصف دجاجة مع تمن ومرق', 15000, '🍗')">+</button>
+            </div>
+            <div class="menu-item" data-aos>
+              <div class="item-emoji">🐓</div>
+              <div class="item-info">
+                <h4 class="item-name">دجاجة كاملة</h4>
+                <p class="item-desc">دجاجة كاملة مشوية بالتنور بتتبيلة ونكهة مميزة مع الخبز</p>
+                <div class="item-price">19,000 <span>دينار</span></div>
+              </div>
+              <button class="add-btn-sm" onclick="addToCart('دجاجة كاملة تنور', 19000, '🐓')">+</button>
+            </div>
+            <div class="menu-item featured" data-aos>
+              <div class="item-emoji">🐓</div>
+              <div class="item-info">
+                <h4 class="item-name">دجاجة كاملة مع صينية تمن</h4>
+                <p class="item-desc">دجاجة كاملة بالتنور مع صينية تمن ومرق وخبز</p>
+                <div class="item-price">29,000 <span>دينار</span></div>
+              </div>
+              <button class="add-btn-sm" onclick="addToCart('دجاجة كاملة مع صينية تمن', 29000, '🐓')">+</button>
+            </div>
+            <div class="menu-item featured" data-aos>
+              <div class="item-emoji">🐓</div>
+              <div class="item-info">
+                <h4 class="item-name">دجاجة ونص مع صينية تمن</h4>
+                <p class="item-desc">دجاجة ونص مشوية بالتنور بنكهة التدخين الطبيعي مع صينية تمن</p>
+                <div class="item-price">44,000 <span>دينار</span></div>
+              </div>
+              <button class="add-btn-sm" onclick="addToCart('دجاجة ونص مع صينية تمن', 44000, '🐓')">+</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- DOLMA -->
+        <div class="lunch-section">
+          <div class="section-label">🍃 دولمة</div>
+          <div class="items-grid">
+            <div class="menu-item" data-aos>
+              <div class="item-emoji">🍃</div>
+              <div class="item-info">
+                <h4 class="item-name">وجبة دولمة</h4>
+                <p class="item-desc">دولمة بغدادية بلحم الغنم العراقي المنزوم</p>
+                <div class="item-price">16,000 <span>دينار</span></div>
+              </div>
+              <button class="add-btn-sm" onclick="addToCart('وجبة دولمة', 16000, '🍃')">+</button>
+            </div>
+            <div class="menu-item" data-aos>
+              <div class="item-emoji">🍃</div>
+              <div class="item-info">
+                <h4 class="item-name">جدر دولمة عائلي</h4>
+                <p class="item-desc">دولمة بغدادية بلحم الغنم العراقي المنزوم</p>
+                <div class="item-price">23,000 <span>دينار</span></div>
+              </div>
+              <button class="add-btn-sm" onclick="addToCart('جدر دولمة عائلي', 23000, '🍃')">+</button>
+            </div>
+            <div class="menu-item featured" data-aos>
+              <div class="item-emoji">🍃</div>
+              <div class="item-info">
+                <h4 class="item-name">جدر دولمة عائلي مع كيلو ضلوع</h4>
+                <p class="item-desc">دولمة بغدادية بلحم الغنم المنزوم مع كيلو ضلوع غنم قوزي مشوية بالتنور</p>
+                <div class="item-price">55,000 <span>دينار</span></div>
+              </div>
+              <button class="add-btn-sm" onclick="addToCart('جدر دولمة مع كيلو ضلوع', 55000, '🍃')">+</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="side-item" data-aos>
+          <div class="side-icon">🍚</div>
+          <div class="side-info">
+            <strong>تمن ومرق</strong>
+            <span class="side-price">6,000 دينار</span>
+          </div>
+          <button class="add-btn-sm" onclick="addToCart('تمن ومرق', 6000, '🍚')">+</button>
+        </div>
+        <div class="side-item" data-aos>
+          <div class="side-icon">💧</div>
+          <div class="side-info">
+            <strong>ماء وشاي لكل شخص</strong>
+            <span class="side-price">1,000 دينار</span>
+          </div>
+          <button class="add-btn-sm" onclick="addToCart('ماء وشاي', 1000, '💧')">+</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- EASTERN DISHES -->
+    <div class="cat-panel" id="cat-eastern">
+      <div class="cat-hero">
+        <div class="cat-hero-bg" style="background: linear-gradient(135deg, #1a0800 0%, #6b2800 50%, #c47a3a 100%)"></div>
+        <div class="cat-hero-content">
+          <h3 class="cat-title">الأطباق الشرقية <span class="cat-title-en">Eastern Dishes</span></h3>
+          <p class="cat-subtitle">لحم الغنم العراقي الأصيل</p>
+        </div>
+      </div>
+      <div class="items-grid">
+        <div class="menu-item featured" data-aos>
+          <div class="item-emoji">🐑</div>
+          <div class="item-info">
+            <h4 class="item-name">وجبة قوزي</h4>
+            <p class="item-desc">قطعة لحم غنم عراقي ٥٥٠غم على طبق تمن مشكل ومرق ومقبلات</p>
+            <div class="item-price">26,000 <span>دينار</span></div>
+          </div>
+          <button class="add-btn-sm" onclick="addToCart('وجبة قوزي', 26000, '🐑')">+</button>
+        </div>
+        <div class="menu-item featured" data-aos>
+          <div class="item-emoji">🐑</div>
+          <div class="item-info">
+            <h4 class="item-name">قوزي جامبو</h4>
+            <p class="item-desc">قوزي كيلو لحم غنم عراقي على طبق تمن مشكل ومرق ومقبلات</p>
+            <div class="item-price">60,000 <span>دينار</span></div>
+          </div>
+          <button class="add-btn-sm" onclick="addToCart('قوزي جامبو', 60000, '🐑')">+</button>
+        </div>
+        <div class="menu-item" data-aos>
+          <div class="item-emoji">🍖</div>
+          <div class="item-info">
+            <h4 class="item-name">تشريب لحم</h4>
+            <p class="item-desc">قطعة لحم غنم عراقي ٥٥٠غم على طبق تشريب خبز بصلصة اللحم</p>
+            <div class="item-price">22,000 <span>دينار</span></div>
+          </div>
+          <button class="add-btn-sm" onclick="addToCart('تشريب لحم', 22000, '🍖')">+</button>
+        </div>
+        <div class="menu-item featured" data-aos>
+          <div class="item-emoji">🦴</div>
+          <div class="item-info">
+            <h4 class="item-name">كيلو ضلوع</h4>
+            <p class="item-desc">كيلو ضلوع غنم مطبوخة ومشوية بالتنور على صينية تمن مشكل</p>
+            <div class="item-price">43,000 <span>دينار</span></div>
+          </div>
+          <button class="add-btn-sm" onclick="addToCart('كيلو ضلوع', 43000, '🦴')">+</button>
+        </div>
+        <div class="menu-item featured" data-aos>
+          <div class="item-emoji">🦴</div>
+          <div class="item-info">
+            <h4 class="item-name">صينية ضلوع دبل</h4>
+            <p class="item-desc">كيلوين ضلوع غنم مطبوخة ومشوية بالتنور على صينية تمن مشكل</p>
+            <div class="item-price">90,000 <span>دينار</span></div>
+          </div>
+          <button class="add-btn-sm" onclick="addToCart('صينية ضلوع دبل', 90000, '🦴')">+</button>
+        </div>
+
+        <!-- QOZI TRAYS -->
+        <div class="tray-section" data-aos>
+          <div class="tray-title">صينيات قوزي</div>
+          <div class="tray-grid">
+            <div class="tray-item">
+              <span>صينية قوزي ٣ قطع</span>
+              <span>9,000 دينار</span>
+              <button class="add-btn-sm" onclick="addToCart('صينية قوزي 3 قطع', 9000, '🐑')">+</button>
+            </div>
+            <div class="tray-item">
+              <span>صينية قوزي ٤ قطع</span>
+              <span>12,000 دينار</span>
+              <button class="add-btn-sm" onclick="addToCart('صينية قوزي 4 قطع', 12000, '🐑')">+</button>
+            </div>
+            <div class="tray-item">
+              <span>صينية قوزي ٥ قطع</span>
+              <span>15,000 دينار</span>
+              <button class="add-btn-sm" onclick="addToCart('صينية قوزي 5 قطع', 15000, '🐑')">+</button>
+            </div>
+            <div class="tray-item">
+              <span>صينية قوزي ٦ قطع</span>
+              <span>17,500 دينار</span>
+              <button class="add-btn-sm" onclick="addToCart('صينية قوزي 6 قطع', 17500, '🐑')">+</button>
+            </div>
+            <div class="tray-item">
+              <span>صينية قوزي ٧ قطع</span>
+              <span>20,000 دينار</span>
+              <button class="add-btn-sm" onclick="addToCart('صينية قوزي 7 قطع', 20000, '🐑')">+</button>
+            </div>
+            <div class="tray-item">
+              <span>صينية قوزي ٨ قطع</span>
+              <span>23,000 دينار</span>
+              <button class="add-btn-sm" onclick="addToCart('صينية قوزي 8 قطع', 23000, '🐑')">+</button>
+            </div>
+            <div class="tray-item">
+              <span>صينية قوزي ٩ قطع</span>
+              <span>26,000 دينار</span>
+              <button class="add-btn-sm" onclick="addToCart('صينية قوزي 9 قطع', 26000, '🐑')">+</button>
+            </div>
+            <div class="tray-item">
+              <span>صينية قوزي ١٠ قطع</span>
+              <span>30,000 دينار</span>
+              <button class="add-btn-sm" onclick="addToCart('صينية قوزي 10 قطع', 30000, '🐑')">+</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- LAMB TRAYS -->
+        <div class="tray-section" data-aos>
+          <div class="tray-title">صينيات خروف</div>
+          <div class="tray-grid">
+            <div class="tray-item">
+              <span>ربع خروف ٣ كغم</span>
+              <span>15,000 دينار</span>
+              <button class="add-btn-sm" onclick="addToCart('ربع خروف 3 كغم', 15000, '🐑')">+</button>
+            </div>
+            <div class="tray-item">
+              <span>نصف خروف ٧ كغم</span>
+              <span>35,000 دينار</span>
+              <button class="add-btn-sm" onclick="addToCart('نصف خروف 7 كغم', 35000, '🐑')">+</button>
+            </div>
+            <div class="tray-item">
+              <span>ربع خروف ٣.٥ كغم</span>
+              <span>175,000 دينار</span>
+              <button class="add-btn-sm" onclick="addToCart('ربع خروف 3.5 كغم', 175000, '🐑')">+</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- OFFER -->
+        <div class="special-offer-card" data-aos>
+          <div class="offer-badge">🌟 عرض مميز</div>
+          <h4>صينية عرض قوزي ودجاج</h4>
+          <div class="offer-items">
+            <span>قطعة قوزي ٥٥٠غم + نصف دجاجة</span>
+            <span>مع ٢ مرق وتمن مشكل وخبز ومقبلات</span>
+          </div>
+          <div class="offer-price">
+            <span class="price-num">42,000</span>
+            <span class="price-cur">دينار</span>
+          </div>
+          <button class="add-btn" onclick="addToCart('صينية عرض قوزي ودجاج', 42000, '🌟')">+ أضف للسلة</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- FISH -->
+    <div class="cat-panel" id="cat-fish">
+      <div class="cat-hero">
+        <div class="cat-hero-bg" style="background: linear-gradient(135deg, #001a2d 0%, #003d6b 50%, #0077b6 100%)"></div>
+        <div class="cat-hero-content">
+          <h3 class="cat-title">الأسماك <span class="cat-title-en">Fish</span></h3>
+          <p class="cat-subtitle">أسماك طازجة بالتنور والجمر</p>
+        </div>
+      </div>
+      <div class="items-grid">
+        <div class="menu-item featured" data-aos>
+          <div class="item-emoji">🐟</div>
+          <div class="item-info">
+            <h4 class="item-name">سمك كارب مقلي / مشوي</h4>
+            <p class="item-desc">مع تمن أحمر وخبز ومقبلات | نصف سمكة</p>
+            <div class="item-price">25,000 <span>دينار</span></div>
+          </div>
+          <button class="add-btn-sm" onclick="addToCart('سمك كارب مقلي/مشوي', 25000, '🐟')">+</button>
+        </div>
+        <div class="menu-item" data-aos>
+          <div class="item-emoji">🐟</div>
+          <div class="item-info">
+            <h4 class="item-name">سمك زبيدي مقلي</h4>
+            <p class="item-desc">مع تمن أحمر وخبز ومقبلات</p>
+            <div class="item-price">15,000 <span>دينار</span></div>
+          </div>
+          <button class="add-btn-sm" onclick="addToCart('سمك زبيدي مقلي', 15000, '🐟')">+</button>
+        </div>
+        <div class="menu-item" data-aos>
+          <div class="item-emoji">🐠</div>
+          <div class="item-info">
+            <h4 class="item-name">سمك سلمون</h4>
+            <p class="item-desc">مع تمن أحمر وخبز ومقبلات</p>
+            <div class="item-price">15,000 <span>دينار</span></div>
+          </div>
+          <button class="add-btn-sm" onclick="addToCart('سمك سلمون', 15000, '🐠')">+</button>
+        </div>
+        <div class="menu-item" data-aos>
+          <div class="item-emoji">🐡</div>
+          <div class="item-info">
+            <h4 class="item-name">سمك زوري</h4>
+            <p class="item-desc">مع تمن أحمر وخبز ومقبلات</p>
+            <div class="item-price">12,000 <span>دينار</span></div>
+          </div>
+          <button class="add-btn-sm" onclick="addToCart('سمك زوري', 12000, '🐡')">+</button>
+        </div>
+        <div class="menu-item" data-aos>
+          <div class="item-emoji">🐟</div>
+          <div class="item-info">
+            <h4 class="item-name">سمك جري</h4>
+            <p class="item-desc">مع تمن أحمر وخبز ومقبلات</p>
+            <div class="dual-price">
+              <div>
+                <small>نفر</small>
+                <div class="item-price">15,000 <span>دينار</span></div>
+                <button class="add-btn-sm" onclick="addToCart('سمك جري - نفر', 15000, '🐟')">+</button>
+              </div>
+              <div>
+                <small>نص نفر</small>
+                <div class="item-price">10,000 <span>دينار</span></div>
+                <button class="add-btn-sm" onclick="addToCart('سمك جري - نص', 10000, '🐟')">+</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="special-offer-card" data-aos>
+        <div class="offer-badge">🔥 أكلة خاصة</div>
+        <h4>سمك كارب مسكوف بالتنور</h4>
+        <p>سمكة كارب كاملة مشوية بالتنور مع تتبيلة خاصة والخبز والمقبلات</p>
+        <div class="fish-offer-prices">
+          <div>
+            <span>كيلوين ونص</span>
+            <span class="price-tag">35,000 دينار</span>
+            <button class="add-btn-sm" onclick="addToCart('كارب مسكوف 2.5 كيلو', 35000, '🐟')">+</button>
+          </div>
+          <div>
+            <span>ثلاثة كيلوات</span>
+            <span class="price-tag">40,000 دينار</span>
+            <button class="add-btn-sm" onclick="addToCart('كارب مسكوف 3 كيلو', 40000, '🐟')">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAST FOOD -->
+    <div class="cat-panel" id="cat-fast">
+      <div class="cat-hero">
+        <div class="cat-hero-bg" style="background: linear-gradient(135deg, #2d2200 0%, #7a5c00 50%, #e8b84b 100%)"></div>
+        <div class="cat-hero-content">
+          <h3 class="cat-title">أكلات سريعة <span class="cat-title-en">Fast Food</span></h3>
+          <p class="cat-subtitle">وجبات سريعة بنكهة العريشة</p>
+        </div>
+      </div>
+      <div class="items-grid">
+        <div class="menu-item" data-aos>
+          <div class="item-emoji">🍔</div>
+          <div class="item-info">
+            <h4 class="item-name">بركر لحم كلاسك</h4>
+            <p class="item-desc">مع بطاطا مقلية وببسي</p>
+            <div class="item-price">5,000 <span>دينار</span></div>
+          </div>
+          <button class="add-btn-sm" onclick="addToCart('بركر لحم كلاسك', 5000, '🍔')">+</button>
+        </div>
+        <div class="menu-item featured" data-aos>
+          <div class="item-emoji">🍔</div>
+          <div class="item-info">
+            <h4 class="item-name">بركر لحم دبل</h4>
+            <p class="item-desc">مع بطاطا مقلية وببسي</p>
+            <div class="item-price">9,000 <span>دينار</span></div>
+          </div>
+          <button class="add-btn-sm" onclick="addToCart('بركر لحم دبل', 9000, '🍔')">+</button>
+        </div>
+        <div class="menu-item" data-aos>
+          <div class="item-emoji">🍔</div>
+          <div class="item-info">
+            <h4 class="item-name">بركر دجاج</h4>
+            <p class="item-desc">مع بطاطا مقلية وببسي</p>
+            <div class="item-price">5,000 <span>دينار</span></div>
+          </div>
+          <button class="add-btn-sm" onclick="addToCart('بركر دجاج', 5000, '🍔')">+</button>
+        </div>
+        <div class="menu-item" data-aos>
+          <div class="item-emoji">🍗</div>
+          <div class="item-info">
+            <h4 class="item-name">سكالوب دجاج</h4>
+            <p class="item-desc">مع بطاطا مقلية وببسي</p>
+            <div class="item-price">5,000 <span>دينار</span></div>
+          </div>
+          <button class="add-btn-sm" onclick="addToCart('سكالوب دجاج', 5000, '🍗')">+</button>
+        </div>
+        <div class="menu-item" data-aos>
+          <div class="item-emoji">🍚</div>
+          <div class="item-info">
+            <h4 class="item-name">ريزو</h4>
+            <p class="item-desc">ريزو بالنكهة الأصيلة</p>
+            <div class="item-price">6,000 <span>دينار</span></div>
+          </div>
+          <button class="add-btn-sm" onclick="addToCart('ريزو', 6000, '🍚')">+</button>
+        </div>
+        <div class="menu-item featured" data-aos>
+          <div class="item-emoji">🥙</div>
+          <div class="item-info">
+            <h4 class="item-name">عرايس لحم</h4>
+            <p class="item-desc">خبز محشو باللحم المشوي بالفحم</p>
+            <div class="item-price">15,000 <span>دينار</span></div>
+          </div>
+          <button class="add-btn-sm" onclick="addToCart('عرايس لحم', 15000, '🥙')">+</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SALADS -->
+    <div class="cat-panel" id="cat-salads">
+      <div class="cat-hero">
+        <div class="cat-hero-bg" style="background: linear-gradient(135deg, #0d2e00 0%, #2d6a00 50%, #6abf3a 100%)"></div>
+        <div class="cat-hero-content">
+          <h3 class="cat-title">السلطات <span class="cat-title-en">Salads</span></h3>
+          <p class="cat-subtitle">طازجة ومحضرة لحظياً</p>
+        </div>
+      </div>
+      <div class="items-grid">
+        <div class="menu-item" data-aos>
+          <div class="item-emoji">🥗</div>
+          <div class="item-info">
+            <h4 class="item-name">كاسة مقبلات صغيرة</h4>
+            <div class="item-price">1,000 <span>دينار</span></div>
+          </div>
+          <button class="add-btn-sm" onclick="addToCart('كاسة مقبلات صغيرة', 1000, '🥗')">+</button>
+        </div>
+        <div class="menu-item" data-aos>
+          <div class="item-emoji">🥗</div>
+          <div class="item-info">
+            <h4 class="item-name">جرجير بالمكسرات والجبن</h4>
+            <div class="item-price">4,000 <span>دينار</span></div>
+          </div>
+          <button class="add-btn-sm" onclick="addToCart('جرجير بالمكسرات والجبن', 4000, '🥗')">+</button>
+        </div>
+        <div class="menu-item" data-aos>
+          <div class="item-emoji">🥗</div>
+          <div class="item-info">
+            <h4 class="item-name">سلطة عربية ناعمة</h4>
+            <div class="item-price">3,000 <span>دينار</span></div>
+          </div>
+          <button class="add-btn-sm" onclick="addToCart('سلطة عربية ناعمة', 3000, '🥗')">+</button>
+        </div>
+        <div class="menu-item featured" data-aos>
+          <div class="item-emoji">🥗</div>
+          <div class="item-info">
+            <h4 class="item-name">صحن مشكل مقبلات</h4>
+            <div class="item-price">7,000 <span>دينار</span></div>
+          </div>
+          <button class="add-btn-sm" onclick="addToCart('صحن مشكل مقبلات', 7000, '🥗')">+</button>
+        </div>
+        <div class="menu-item featured" data-aos>
+          <div class="item-emoji">🥙</div>
+          <div class="item-info">
+            <h4 class="item-name">فتوش</h4>
+            <div class="item-price">6,000 <span>دينار</span></div>
+          </div>
+          <button class="add-btn-sm" onclick="addToCart('فتوش', 6000, '🥙')">+</button>
+        </div>
+        <div class="menu-item featured" data-aos>
+          <div class="item-emoji">🌿</div>
+          <div class="item-info">
+            <h4 class="item-name">تبولة</h4>
+            <div class="item-price">6,000 <span>دينار</span></div>
+          </div>
+          <button class="add-btn-sm" onclick="addToCart('تبولة', 6000, '🌿')">+</button>
+        </div>
+        <!-- Extra sides from delivery menu -->
+        <div class="menu-item" data-aos>
+          <div class="item-emoji">🥬</div>
+          <div class="item-info">
+            <h4 class="item-name">جاجيك</h4>
+            <div class="item-price">3,000 <span>دينار</span></div>
+          </div>
+          <button class="add-btn-sm" onclick="addToCart('جاجيك', 3000, '🥬')">+</button>
+        </div>
+        <div class="menu-item" data-aos>
+          <div class="item-emoji">🧄</div>
+          <div class="item-info">
+            <h4 class="item-name">قصص</h4>
+            <div class="item-price">3,000 <span>دينار</span></div>
+          </div>
+          <button class="add-btn-sm" onclick="addToCart('قصص', 3000, '🧄')">+</button>
+        </div>
+        <div class="menu-item" data-aos>
+          <div class="item-emoji">🍆</div>
+          <div class="item-info">
+            <h4 class="item-name">منبل</h4>
+            <div class="item-price">4,000 <span>دينار</span></div>
+          </div>
+          <button class="add-btn-sm" onclick="addToCart('منبل', 4000, '🍆')">+</button>
+        </div>
+        <div class="menu-item" data-aos>
+          <div class="item-emoji">🧅</div>
+          <div class="item-info">
+            <h4 class="item-name">فتوش</h4>
+            <div class="item-price">4,000 <span>دينار</span></div>
+          </div>
+          <button class="add-btn-sm" onclick="addToCart('فتوش (مقبلات)', 4000, '🧅')">+</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- COFFEE & DRINKS -->
+    <div class="cat-panel" id="cat-coffee">
+      <div class="cat-hero">
+        <div class="cat-hero-bg" style="background: linear-gradient(135deg, #1a0d00 0%, #5c3317 50%, #c8956c 100%)"></div>
+        <div class="cat-hero-content">
+          <h3 class="cat-title">قهوة ومشروبات <span class="cat-title-en">Coffee & Drinks</span></h3>
+          <p class="cat-subtitle">نشرب جاي ونتولف عالراحة</p>
+        </div>
+      </div>
+
+      <div class="drinks-sections">
+        <!-- HOT COFFEE -->
+        <div class="drinks-section">
+          <div class="drinks-section-title">☕ قهوة ساخنة · Hot Coffee</div>
+          <div class="drinks-grid">
+            <div class="drink-item" data-aos>
+              <span>☕</span><span>إسبريسو</span>
+              <span class="drink-price">2,000</span>
+              <button class="add-btn-sm" onclick="addToCart('إسبريسو', 2000, '☕')">+</button>
+            </div>
+            <div class="drink-item" data-aos>
+              <span>☕</span><span>دبل إسبريسو</span>
+              <span class="drink-price">3,000</span>
+              <button class="add-btn-sm" onclick="addToCart('دبل إسبريسو', 3000, '☕')">+</button>
+            </div>
+            <div class="drink-item" data-aos>
+              <span>☕</span><span>كابتشينو</span>
+              <span class="drink-price">3,000</span>
+              <button class="add-btn-sm" onclick="addToCart('كابتشينو', 3000, '☕')">+</button>
+            </div>
+            <div class="drink-item" data-aos>
+              <span>☕</span><span>أمريكانو</span>
+              <span class="drink-price">3,000</span>
+              <button class="add-btn-sm" onclick="addToCart('أمريكانو', 3000, '☕')">+</button>
+            </div>
+            <div class="drink-item" data-aos>
+              <span>☕</span><span>لاتيه</span>
+              <span class="drink-price">3,000</span>
+              <button class="add-btn-sm" onclick="addToCart('لاتيه', 3000, '☕')">+</button>
+            </div>
+            <div class="drink-item" data-aos>
+              <span>🍫</span><span>شوكولا ساخنة</span>
+              <span class="drink-price">3,000</span>
+              <button class="add-btn-sm" onclick="addToCart('شوكولا ساخنة', 3000, '🍫')">+</button>
+            </div>
+            <div class="drink-item" data-aos>
+              <span>☕</span><span>موكا</span>
+              <span class="drink-price">3,000</span>
+              <button class="add-btn-sm" onclick="addToCart('موكا', 3000, '☕')">+</button>
+            </div>
+            <div class="drink-item" data-aos>
+              <span>☕</span><span>فلات وايت</span>
+              <span class="drink-price">3,000</span>
+              <button class="add-btn-sm" onclick="addToCart('فلات وايت', 3000, '☕')">+</button>
+            </div>
+            <div class="drink-item" data-aos>
+              <span>☕</span><span>سبانش لاتيه</span>
+              <span class="drink-price">4,000</span>
+              <button class="add-btn-sm" onclick="addToCart('سبانش لاتيه', 4000, '☕')">+</button>
+            </div>
+            <div class="drink-item" data-aos>
+              <span>🫖</span><span>قهوة تركية</span>
+              <span class="drink-price">2,000</span>
+              <button class="add-btn-sm" onclick="addToCart('قهوة تركية', 2000, '🫖')">+</button>
+            </div>
+            <div class="drink-item" data-aos>
+              <span>🫖</span><span>قهوة تركية دبل</span>
+              <span class="drink-price">3,000</span>
+              <button class="add-btn-sm" onclick="addToCart('قهوة تركية دبل', 3000, '🫖')">+</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- COLD COFFEE -->
+        <div class="drinks-section">
+          <div class="drinks-section-title">🧊 قهوة مثلجة · Iced Coffee — 3,000 دينار</div>
+          <div class="drinks-grid">
+            <div class="drink-item" data-aos>
+              <span>🧊</span><span>لاتيه مثلج</span>
+              <span class="drink-price">3,000</span>
+              <button class="add-btn-sm" onclick="addToCart('لاتيه مثلج', 3000, '🧊')">+</button>
+            </div>
+            <div class="drink-item" data-aos>
+              <span>🧊</span><span>أمريكانو مثلج</span>
+              <span class="drink-price">3,000</span>
+              <button class="add-btn-sm" onclick="addToCart('أمريكانو مثلج', 3000, '🧊')">+</button>
+            </div>
+            <div class="drink-item" data-aos>
+              <span>🧊</span><span>سبانش لاتيه مثلج</span>
+              <span class="drink-price">3,000</span>
+              <button class="add-btn-sm" onclick="addToCart('سبانش لاتيه مثلج', 3000, '🧊')">+</button>
+            </div>
+            <div class="drink-item" data-aos>
+              <span>🧊</span><span>موكا مثلج</span>
+              <span class="drink-price">3,000</span>
+              <button class="add-btn-sm" onclick="addToCart('موكا مثلج', 3000, '🧊')">+</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- FRAPPE -->
+        <div class="drinks-section">
+          <div class="drinks-section-title">🥤 فرابتشينو — 4,000 دينار</div>
+          <div class="drinks-grid">
+            <div class="drink-item" data-aos>
+              <span>🥤</span><span>كراميل فراب</span>
+              <span class="drink-price">4,000</span>
+              <button class="add-btn-sm" onclick="addToCart('كراميل فراب', 4000, '🥤')">+</button>
+            </div>
+            <div class="drink-item" data-aos>
+              <span>🥤</span><span>موكا فراب</span>
+              <span class="drink-price">4,000</span>
+              <button class="add-btn-sm" onclick="addToCart('موكا فراب', 4000, '🥤')">+</button>
+            </div>
+            <div class="drink-item" data-aos>
+              <span>🥤</span><span>ملك شيك</span>
+              <span class="drink-price">4,000</span>
+              <button class="add-btn-sm" onclick="addToCart('ملك شيك', 4000, '🥤')">+</button>
+            </div>
+            <div class="drink-item" data-aos>
+              <span>🥤</span><span>فانيلا / أوريو / لوتس / كندر</span>
+              <span class="drink-price">4,000</span>
+              <button class="add-btn-sm" onclick="addToCart('فراب فانيلا/أوريو', 4000, '🥤')">+</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- NATURAL JUICES -->
+        <div class="drinks-section">
+          <div class="drinks-section-title">🍊 عصاير طبيعية — 4,000 دينار</div>
+          <div class="drinks-grid">
+            <div class="drink-item" data-aos>
+              <span>🍊</span><span>برتقال</span>
+              <span class="drink-price">4,000</span>
+              <button class="add-btn-sm" onclick="addToCart('عصير برتقال', 4000, '🍊')">+</button>
+            </div>
+            <div class="drink-item" data-aos>
+              <span>🍑</span><span>خوخ</span>
+              <span class="drink-price">4,000</span>
+              <button class="add-btn-sm" onclick="addToCart('عصير خوخ', 4000, '🍑')">+</button>
+            </div>
+            <div class="drink-item" data-aos>
+              <span>🌿</span><span>ليمون نعناع</span>
+              <span class="drink-price">4,000</span>
+              <button class="add-btn-sm" onclick="addToCart('عصير ليمون نعناع', 4000, '🌿')">+</button>
+            </div>
+            <div class="drink-item" data-aos>
+              <span>🍹</span><span>ركي</span>
+              <span class="drink-price">4,000</span>
+              <button class="add-btn-sm" onclick="addToCart('عصير ركي', 4000, '🍹')">+</button>
+            </div>
+            <div class="drink-item" data-aos>
+              <span>🥭</span><span>مانجو</span>
+              <span class="drink-price">4,000</span>
+              <button class="add-btn-sm" onclick="addToCart('عصير مانجو', 4000, '🥭')">+</button>
+            </div>
+            <div class="drink-item" data-aos>
+              <span>🍓</span><span>كاسة فواكه</span>
+              <span class="drink-price">2,000</span>
+              <button class="add-btn-sm" onclick="addToCart('كاسة فواكه', 2000, '🍓')">+</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- DRINKS -->
+        <div class="drinks-section">
+          <div class="drinks-section-title">🫖 مشروبات · Beverages</div>
+          <div class="drinks-grid">
+            <div class="drink-item featured-drink" data-aos>
+              <span>🫖</span>
+              <div>
+                <strong>شاي مثلج بالليمون والنعناع - ١ لتر</strong>
+              </div>
+              <span class="drink-price">7,000</span>
+              <button class="add-btn-sm" onclick="addToCart('شاي مثلج بالليمون والنعناع', 7000, '🫖')">+</button>
+            </div>
+            <div class="drink-item featured-drink" data-aos>
+              <span>🫖</span>
+              <div>
+                <strong>شاي مثلج بالخوخ - ١ لتر</strong>
+              </div>
+              <span class="drink-price">7,000</span>
+              <button class="add-btn-sm" onclick="addToCart('شاي مثلج بالخوخ', 7000, '🫖')">+</button>
+            </div>
+            <div class="drink-item" data-aos>
+              <span>🥤</span><span>مشروبات غازية</span>
+              <span class="drink-price">1,000</span>
+              <button class="add-btn-sm" onclick="addToCart('مشروب غازي', 1000, '🥤')">+</button>
+            </div>
+            <div class="drink-item" data-aos>
+              <span>🥛</span><span>لبن</span>
+              <span class="drink-price">1,000</span>
+              <button class="add-btn-sm" onclick="addToCart('لبن', 1000, '🥛')">+</button>
+            </div>
+            <div class="drink-item" data-aos>
+              <span>💧</span><span>ماء + شاي</span>
+              <span class="drink-price">1,000</span>
+              <button class="add-btn-sm" onclick="addToCart('ماء وشاي', 1000, '💧')">+</button>
+            </div>
+          </div>
+          <div class="hookah-item" data-aos>
+            <div class="hookah-icon">🪄</div>
+            <div class="hookah-info">
+              <strong>نركيله</strong>
+              <span>شيشة عراقية أصيلة</span>
+            </div>
+            <div class="hookah-price">6,000 <span>دينار</span></div>
+            <button class="add-btn-sm" onclick="addToCart('نركيله', 6000, '🪄')">+</button>
+          </div>
+          <div class="flavor-add">
+            <span>+ إضافة نكهة</span>
+            <span class="drink-price">1,000 دينار</span>
+            <button class="add-btn-sm" onclick="addToCart('إضافة نكهة', 1000, '✨')">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ABOUT SECTION -->
+<section id="about">
+  <div class="about-container">
+    <div class="about-decoration">
+      <div class="deco-line"></div>
+      <div class="deco-flame">🔥</div>
+      <div class="deco-line"></div>
+    </div>
+    <h2 class="section-title">
+      <span class="title-ar">عن مطعم العريشة</span>
+      <span class="title-en">About Al-Areesha</span>
+    </h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p class="about-p">منذ عام ١٩٨٢، يقدم مطعم وتجهيزات العريشة أفضل الأطباق العراقية الأصيلة في قلب بغداد. نحن فخورون بتقديم دجاج التنور بالنكهة التقليدية العريقة التي توارثناها عبر الأجيال.</p>
+        <p class="about-p en-text">Since 1982, Al-Areesha Restaurant has been serving authentic Iraqi cuisine in the heart of Baghdad. We take pride in our traditional tanoor chicken and Iraqi grills, crafted with recipes passed through generations.</p>
+      </div>
+      <div class="about-stats">
+        <div class="stat-item">
+          <div class="stat-num">١٩٨٢</div>
+          <div class="stat-label">سنة التأسيس</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">+٤٠</div>
+          <div class="stat-label">سنة خبرة</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">١٠٠%</div>
+          <div class="stat-label">عراقي أصيل</div>
+        </div>
+      </div>
+    </div>
+    <div class="features">
+      <div class="feature-card">
+        <div class="feature-icon">🔥</div>
+        <h3>تنور أصيل</h3>
+        <p>نستخدم التنور التقليدي العراقي في طهي جميع أطباقنا</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🐑</div>
+        <h3>لحوم عراقية</h3>
+        <p>نختار أجود أنواع اللحوم العراقية الطازجة يومياً</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🏠</div>
+        <h3>توصيل سريع</h3>
+        <p>نوصل طلبك طازجاً وساخناً لباب بيتك</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT SECTION -->
+<section id="contact">
+  <div class="contact-container">
+    <h2 class="section-title">
+      <span class="title-ar">تواصل معنا</span>
+      <span class="title-en">Contact Us</span>
+    </h2>
+    <div class="contact-grid">
+      <a class="contact-card phone" href="tel:+9647XXXXXXXXX">
+        <div class="contact-icon">📞</div>
+        <div class="contact-label">اتصل بنا</div>
+        <div class="contact-val">+964 7XX XXX XXXX</div>
+      </a>
+      <a class="contact-card whatsapp" href="https://wa.me/9647XXXXXXXXX" target="_blank">
+        <div class="contact-icon">💬</div>
+        <div class="contact-label">واتساب</div>
+        <div class="contact-val">اطلب عبر واتساب</div>
+      </a>
+      <div class="contact-card location">
+        <div class="contact-icon">📍</div>
+        <div class="contact-label">الموقع</div>
+        <div class="contact-val">بغداد، العراق</div>
+      </div>
+      <div class="contact-card hours">
+        <div class="contact-icon">⏰</div>
+        <div class="contact-label">أوقات العمل</div>
+        <div class="contact-val">٨ صباحاً - ١٢ منتصف الليل</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-content">
+    <div class="footer-logo">
+      <span class="footer-flame">🔥</span>
+      <span>مطعم وتجهيزات العريشة</span>
+    </div>
+    <p class="footer-tagline">نشرب جاي ونتولف عالراحة والجاي · Since 1982</p>
+    <div class="footer-links">
+      <a href="#menu">القائمة</a>
+      <a href="#about">عن المطعم</a>
+      <a href="#contact">تواصل</a>
+    </div>
+    <p class="footer-copy">© 2024 مطعم العريشة · جميع الحقوق محفوظة</p>
+  </div>
+</footer>
+
+<!-- CART DRAWER -->
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-header">
+    <h3>🛒 سلة الطلب</h3>
+    <button class="cart-close" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-mode-badge" id="cartModeBadge">🛵 توصيل</div>
+  <div class="cart-items" id="cartItems">
+    <div class="cart-empty">
+      <span>🛒</span>
+      <p>سلتك فارغة</p>
+      <p class="cart-empty-en">Your cart is empty</p>
+    </div>
+  </div>
+  <div class="cart-footer" id="cartFooter" style="display:none">
+    <div class="cart-total">
+      <span>المجموع</span>
+      <span id="cartTotal">0 دينار</span>
+    </div>
+    <div class="cart-note-wrap">
+      <textarea id="cartNote" placeholder="ملاحظات الطلب... (عنوان، ملاحظات خاصة)" rows="3"></textarea>
+    </div>
+    <button class="whatsapp-btn" onclick="sendToWhatsApp()">
+      <span>💬</span>
+      <span>إرسال الطلب عبر واتساب</span>
+    </button>
+  </div>
+</div>
+
+<!-- FLOATING CART BUTTON -->
+<button class="float-cart" id="floatCart" onclick="toggleCart()" style="display:none">
+  🛒 <span id="floatCount">0</span>
+</button>
+
+<script src="js/main.js"></script>
+</body>
+</html>
