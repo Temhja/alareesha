@@ -7,7 +7,7 @@
 
 // ── CONFIGURATION ──
 const CONFIG = {
-  whatsappNumber: '9647XXXXXXXXX', // ← Replace with actual WhatsApp number
+  whatsappNumber: '9647811144842', // ✅ Al-Areesha WhatsApp
   restaurantName: 'مطعم العريشة',
   currency: 'دينار',
 };
