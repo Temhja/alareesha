@@ -1,296 +1,84 @@
 /* ============================================
-   AL-AREESHA — ANIMATIONS & KEYFRAMES
+   AL-AREESHA — ANIMATIONS
    ============================================ */
 
-/* ── KEYFRAMES ── */
-
 @keyframes flicker {
-  0%   { transform: scale(1) rotate(-2deg); filter: brightness(1); }
-  25%  { transform: scale(1.05) rotate(1deg); filter: brightness(1.15); }
-  50%  { transform: scale(0.97) rotate(-1deg); filter: brightness(0.95); }
-  75%  { transform: scale(1.03) rotate(2deg); filter: brightness(1.1); }
-  100% { transform: scale(1) rotate(0deg); filter: brightness(1); }
+  0%   { transform: scale(1) rotate(-1deg); }
+  50%  { transform: scale(1.08) rotate(1deg); filter: brightness(1.2); }
+  100% { transform: scale(0.97) rotate(0deg); }
 }
-
 @keyframes loadBar {
-  from { width: 0%; }
-  to   { width: 100%; }
+  from { width: 0% }
+  to   { width: 100% }
 }
-
 @keyframes heroEntrance {
-  from {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(30px) scale(.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
 }
-
 @keyframes fadeSlideIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
-
 @keyframes bounce {
-  0%, 100% { transform: translateX(-50%) translateY(0); }
-  50%       { transform: translateX(-50%) translateY(8px); }
+  0%,100% { transform: translateX(-50%) translateY(0); }
+  50%      { transform: translateX(-50%) translateY(8px); }
 }
-
 @keyframes sparkFloat {
   0%   { opacity: 0; transform: translateY(0) scale(1); }
   20%  { opacity: 1; }
-  80%  { opacity: 0.5; }
-  100% { opacity: 0; transform: translateY(-120px) scale(0.3) rotate(45deg); }
+  80%  { opacity: .4; }
+  100% { opacity: 0; transform: translateY(-140px) scale(.3); }
 }
-
 @keyframes itemPop {
-  from { opacity: 0; transform: scale(0.92) translateY(8px); }
+  from { opacity: 0; transform: scale(.93) translateY(6px); }
   to   { opacity: 1; transform: scale(1) translateY(0); }
 }
-
 @keyframes floatUp {
-  from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+  from { opacity: 0; transform: translateX(-50%) translateY(16px); }
   to   { opacity: 1; transform: translateX(-50%) translateY(0); }
 }
-
-@keyframes pulseRing {
-  0%   { box-shadow: 0 0 0 0 rgba(163, 38, 42, 0.4); }
-  70%  { box-shadow: 0 0 0 12px rgba(163, 38, 42, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(163, 38, 42, 0); }
+@keyframes pulse {
+  0%,100% { box-shadow: 0 0 0 0 rgba(201,164,93,.5); }
+  50%      { box-shadow: 0 0 0 6px rgba(201,164,93,0); }
+}
+@keyframes shimmerBtn {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
 }
 
-@keyframes shimmer {
-  0%   { background-position: -400px 0; }
-  100% { background-position: 400px 0; }
-}
-
-@keyframes slideInLeft {
-  from { opacity: 0; transform: translateX(-30px); }
-  to   { opacity: 1; transform: translateX(0); }
-}
-
-@keyframes slideInRight {
-  from { opacity: 0; transform: translateX(30px); }
-  to   { opacity: 1; transform: translateX(0); }
-}
-
-@keyframes zoomIn {
-  from { opacity: 0; transform: scale(0.85); }
-  to   { opacity: 1; transform: scale(1); }
-}
-
-@keyframes cartBump {
-  0%   { transform: scale(1); }
-  30%  { transform: scale(1.5) rotate(-10deg); }
-  60%  { transform: scale(0.9) rotate(5deg); }
-  100% { transform: scale(1) rotate(0); }
-}
-
-@keyframes drawLine {
-  from { stroke-dashoffset: 1000; }
-  to   { stroke-dashoffset: 0; }
-}
-
-@keyframes countUp {
-  from { opacity: 0; transform: translateY(10px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes tanoorGlow {
-  0%, 100% { box-shadow: 0 0 20px rgba(163,38,42,0.3), 0 0 40px rgba(230,126,34,0.1); }
-  50%       { box-shadow: 0 0 30px rgba(163,38,42,0.5), 0 0 60px rgba(230,126,34,0.2); }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-
-/* ── AOS (Animate On Scroll) — Pure CSS approach ── */
+/* AOS */
 [data-aos] {
   opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transform: translateY(22px);
+  transition: opacity .55s ease, transform .55s ease;
 }
 [data-aos].visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* ── APPLIED ANIMATIONS ── */
-
-/* Floating elements glow */
-.contact-card.phone,
-.contact-card.whatsapp {
-  animation: tanoorGlow 3s ease-in-out infinite;
-}
-
-/* Add button pulse on first appearance */
-.add-btn {
-  animation: pulseRing 2s ease-in-out 2s 3;
-}
-
-/* Tab active indicator slide */
-.tab.active {
-  animation: fadeSlideIn 0.3s ease;
-}
-
-/* Stat numbers animate in */
-.stat-num {
-  animation: countUp 0.6s ease;
-}
-
-/* Feature cards stagger */
-.feature-card:nth-child(1) { animation-delay: 0.1s; }
-.feature-card:nth-child(2) { animation-delay: 0.2s; }
-.feature-card:nth-child(3) { animation-delay: 0.3s; }
-
-/* Category panel */
-.cat-panel.active {
-  animation: fadeSlideIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Grill row hover */
-.grill-row {
-  transition: background 0.25s ease, transform 0.25s ease;
-}
-.grill-row:hover {
-  transform: translateX(-4px);
-}
-
-/* Special card reveal */
-.special-card {
-  animation: zoomIn 0.4s ease both;
-}
-
-/* Hero badge entrance */
-.hero-badge {
-  animation: slideInLeft 0.8s ease 0.3s both;
-}
-.hero-content .hero-ar {
-  animation: fadeSlideIn 0.8s ease 0.4s both;
-}
-.hero-content .hero-brand {
-  animation: fadeSlideIn 0.9s ease 0.5s both;
-}
-.hero-content .hero-en {
-  animation: fadeSlideIn 0.8s ease 0.6s both;
-}
-.hero-content .hero-desc {
-  animation: fadeSlideIn 0.8s ease 0.7s both;
-}
-.hero-content .hero-btns {
-  animation: fadeSlideIn 0.8s ease 0.9s both;
-}
-.hero-content .hero-info {
-  animation: fadeSlideIn 0.8s ease 1.1s both;
-}
-
-/* Mode cards stagger */
-.mode-card:nth-child(1) { animation: slideInLeft 0.6s ease 0.2s both; }
-.mode-card:nth-child(2) { animation: fadeSlideIn 0.6s ease 0.35s both; }
-.mode-card:nth-child(3) { animation: slideInRight 0.6s ease 0.5s both; }
-
-/* Menu item hover ripple */
-.menu-item::after {
+/* Shimmer on WA button */
+.wa-btn { position: relative; overflow: hidden; }
+.wa-btn::after {
   content: '';
   position: absolute; inset: 0;
-  border-radius: inherit;
-  background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(163,38,42,0.08) 0%, transparent 60%);
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  pointer-events: none;
-}
-.menu-item:hover::after {
-  opacity: 1;
-}
-
-/* Drink item hover */
-.drink-item {
-  transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
-}
-.drink-item:hover {
-  transform: translateX(-3px);
-}
-
-/* WhatsApp button pulse */
-.whatsapp-btn {
-  position: relative; overflow: hidden;
-}
-.whatsapp-btn::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.18), transparent);
   transform: translateX(-100%);
   animation: shimmerBtn 2.5s infinite;
 }
-@keyframes shimmerBtn {
-  0%   { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
+
+/* Tab active */
+.tab.active { animation: fadeSlideIn .25s ease; }
+
+/* Parallax var */
+#hero .hero-bg-img {
+  transform: translateY(calc(var(--scroll,0px) * .28));
+  will-change: transform;
 }
 
-/* Cart item entrance */
-.cart-item-row {
-  animation: slideInLeft 0.3s ease;
-}
-
-/* Scroll hint bounce */
-.hero-scroll-hint {
-  animation: bounce 2s ease-in-out infinite;
-}
-
-/* Loader flame */
-.loader-flame {
-  animation: flicker 0.6s ease-in-out infinite alternate;
-}
-
-/* Logo flame */
-.logo-icon {
-  display: inline-block;
-  animation: flicker 2s ease-in-out infinite alternate;
-}
-
-/* Tab underline slide */
-.tab::after {
-  content: '';
-  position: absolute; bottom: 0; right: 0;
-  width: 0; height: 3px; background: var(--red);
-  transition: width 0.3s ease;
-}
-.tab { position: relative; }
-.tab.active::after,
-.tab:hover::after {
-  width: 100%;
-}
-
-/* Sections scroll fade */
-#about, #contact {
-  animation: fadeIn 0.1s ease;
-}
-
-/* ── MOBILE SPECIFIC ── */
-@media (max-width: 768px) {
-  .grill-row:hover {
-    transform: none;
-  }
-  .drink-item:hover {
-    transform: none;
-  }
-}
-
-/* ── REDUCED MOTION ── */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
   }
 }

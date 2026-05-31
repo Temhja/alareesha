@@ -1,527 +1,206 @@
-/* ============================================
-   AL-AREESHA RESTAURANT — MAIN JAVASCRIPT
-   Cart, WhatsApp, Tabs, Animations, Lang
-   ============================================ */
-
 'use strict';
 
-// ── CONFIGURATION ──
-const CONFIG = {
-  whatsappNumber: '9647811144842', // ✅ Al-Areesha WhatsApp
-  restaurantName: 'مطعم العريشة',
-  currency: 'دينار',
-};
+const WA_NUMBER = '9647811144842';
+let cart = [], orderMode = 'delivery', lang = 'ar', cartOpen = false;
 
-// ── STATE ──
-let cart = [];
-let currentMode = 'delivery';
-let currentLang = 'ar';
-let isCartOpen = false;
-
-// ── DOM READY ──
+/* ── BOOT ── */
 document.addEventListener('DOMContentLoaded', () => {
   initLoader();
   initHeader();
   initSparks();
   initAOS();
-  initTabs();
+  initParallax();
+  initSmoothScroll();
   initLang();
-  initMouseRipple();
-  initStickyTabs();
+  showCat('breakfast');
+  updateCartUI();
 });
 
-// ============================================
-// LOADER
-// ============================================
+/* ── LOADER ── */
 function initLoader() {
-  const loader = document.getElementById('loader');
-  setTimeout(() => {
-    loader.classList.add('hidden');
-    document.body.style.overflow = 'auto';
-  }, 2000);
   document.body.style.overflow = 'hidden';
+  setTimeout(() => {
+    document.getElementById('loader').classList.add('hidden');
+    document.body.style.overflow = '';
+  }, 2000);
 }
 
-// ============================================
-// HEADER SCROLL EFFECT
-// ============================================
+/* ── HEADER ── */
 function initHeader() {
-  const header = document.getElementById('header');
+  const h = document.getElementById('header');
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 80) {
-      header.classList.add('scrolled');
-    } else {
-      header.classList.remove('scrolled');
-    }
+    h.classList.toggle('scrolled', window.scrollY > 60);
   }, { passive: true });
 }
 
-// ============================================
-// FIRE SPARKS in HERO
-// ============================================
+/* ── SPARKS ── */
 function initSparks() {
-  const container = document.getElementById('heroSparks');
-  if (!container) return;
-
-  const count = 18;
-  for (let i = 0; i < count; i++) {
-    const spark = document.createElement('div');
-    spark.className = 'spark';
-    spark.style.setProperty('--x', `${Math.random() * 100}%`);
-    spark.style.setProperty('--y', `${Math.random() * 20}%`);
-    spark.style.setProperty('--dur', `${2 + Math.random() * 4}s`);
-    spark.style.setProperty('--del', `${Math.random() * 5}s`);
-    // Random warm colors
-    const colors = ['#E67E22', '#F39C12', '#E74C3C', '#D4A017', '#C0392B'];
-    spark.style.background = colors[Math.floor(Math.random() * colors.length)];
-    spark.style.width = `${3 + Math.random() * 5}px`;
-    spark.style.height = spark.style.width;
-    container.appendChild(spark);
+  const c = document.getElementById('heroParticles');
+  if (!c) return;
+  const colors = ['#C9A45D','#DEB97A','#A3262A','#E8701A','#fff'];
+  for (let i = 0; i < 22; i++) {
+    const s = document.createElement('div');
+    s.className = 'spark';
+    const size = 3 + Math.random() * 5;
+    s.style.cssText = `
+      width:${size}px;height:${size}px;
+      background:${colors[Math.floor(Math.random()*colors.length)]};
+      --x:${Math.random()*100}%;
+      --y:${Math.random()*25}%;
+      --dur:${2.5+Math.random()*4}s;
+      --del:${Math.random()*6}s;
+    `;
+    c.appendChild(s);
   }
 }
 
-// ============================================
-// ANIMATE ON SCROLL
-// ============================================
+/* ── AOS ── */
 function initAOS() {
-  const els = document.querySelectorAll('[data-aos]');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-
-  els.forEach((el, i) => {
-    el.style.transitionDelay = `${(i % 6) * 0.07}s`;
-    observer.observe(el);
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }});
+  }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+  document.querySelectorAll('[data-aos]').forEach((el, i) => {
+    el.style.transitionDelay = (i % 8) * 0.065 + 's';
+    obs.observe(el);
   });
 }
-
-// Re-run AOS for dynamically shown panels
 function refreshAOS() {
-  const els = document.querySelectorAll('[data-aos]:not(.visible)');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  els.forEach(el => observer.observe(el));
-}
-
-// ============================================
-// MOUSE RIPPLE ON MENU ITEMS
-// ============================================
-function initMouseRipple() {
-  document.addEventListener('mousemove', (e) => {
-    const card = e.target.closest('.menu-item');
-    if (!card) return;
-    const rect = card.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width) * 100;
-    const y = ((e.clientY - rect.top) / rect.height) * 100;
-    card.style.setProperty('--mx', `${x}%`);
-    card.style.setProperty('--my', `${y}%`);
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }});
+  }, { threshold: 0.08 });
+  document.querySelectorAll('[data-aos]:not(.visible)').forEach((el, i) => {
+    el.style.transitionDelay = (i % 8) * 0.065 + 's';
+    obs.observe(el);
   });
 }
 
-// ============================================
-// STICKY TABS OFFSET
-// ============================================
-function initStickyTabs() {
-  const header = document.getElementById('header');
-  const tabs = document.getElementById('tabsWrapper');
-  if (!tabs) return;
-
-  const updateOffset = () => {
-    const headerH = header.offsetHeight;
-    tabs.style.top = `${headerH}px`;
-  };
-  updateOffset();
-  window.addEventListener('resize', updateOffset);
-  window.addEventListener('scroll', updateOffset, { passive: true });
+/* ── PARALLAX ── */
+function initParallax() {
+  window.addEventListener('scroll', () => {
+    if (window.scrollY < window.innerHeight * 1.2)
+      document.getElementById('hero')?.style.setProperty('--scroll', window.scrollY + 'px');
+  }, { passive: true });
 }
 
-// ============================================
-// CATEGORY TABS
-// ============================================
-function initTabs() {
-  // Set initial active
-  showCat('breakfast');
+/* ── SMOOTH SCROLL ── */
+function initSmoothScroll() {
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const t = document.querySelector(a.getAttribute('href'));
+      if (!t) return;
+      e.preventDefault();
+      const off = document.getElementById('header').offsetHeight + (document.getElementById('tabsBar')?.offsetHeight || 0);
+      window.scrollTo({ top: t.getBoundingClientRect().top + window.scrollY - off - 8, behavior: 'smooth' });
+    });
+  });
 }
 
-function showCat(catId) {
-  // Hide all panels
+/* ── TABS ── */
+function showCat(id) {
   document.querySelectorAll('.cat-panel').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-
-  // Show selected
-  const panel = document.getElementById(`cat-${catId}`);
-  const tab = document.querySelector(`[data-cat="${catId}"]`);
-
-  if (panel) {
-    panel.classList.add('active');
-    // Reset AOS inside this panel
-    setTimeout(() => {
-      panel.querySelectorAll('[data-aos]').forEach((el, i) => {
-        el.style.transitionDelay = `${i * 0.06}s`;
-        if (!el.classList.contains('visible')) {
-          // Observe
-          const obs = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-              if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                obs.unobserve(entry.target);
-              }
-            });
-          }, { threshold: 0.05 });
-          obs.observe(el);
-        }
-      });
-    }, 50);
-  }
-  if (tab) {
-    tab.classList.add('active');
-    // Scroll tab into view
-    tab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-  }
-
-  // Scroll menu into view
-  const menu = document.getElementById('menu');
-  const tabsH = document.getElementById('tabsWrapper')?.offsetHeight || 0;
-  const headerH = document.getElementById('header')?.offsetHeight || 0;
-  const menuTop = menu.getBoundingClientRect().top + window.scrollY - headerH - tabsH - 10;
-
-  if (window.scrollY > menuTop + 100) {
-    window.scrollTo({ top: menuTop, behavior: 'smooth' });
-  }
+  const panel = document.getElementById('cat-' + id);
+  const tab   = document.querySelector(`[data-cat="${id}"]`);
+  if (panel) { panel.classList.add('active'); setTimeout(refreshAOS, 60); }
+  if (tab)   { tab.classList.add('active'); tab.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' }); }
 }
 
-// ============================================
-// ORDER MODE
-// ============================================
-function setMode(mode) {
-  currentMode = mode;
-  document.querySelectorAll('.mode-card').forEach(c => c.classList.remove('active'));
-  const card = document.querySelector(`[data-mode="${mode}"]`);
-  if (card) card.classList.add('active');
-
-  // Update cart badge
-  const badges = {
-    delivery: '🛵 توصيل',
-    dine: '🪑 داخل المطعم',
-    pickup: '🏠 استلام'
-  };
-  const badge = document.getElementById('cartModeBadge');
-  if (badge) badge.textContent = badges[mode] || '';
-
-  // Smooth scroll to menu
-  setTimeout(() => {
-    document.getElementById('menu')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }, 300);
+/* ── MODE ── */
+function setMode(m) {
+  orderMode = m;
+  document.querySelectorAll('.mode-card').forEach(c => c.classList.toggle('active', c.dataset.mode === m));
+  const labels = { delivery: '🛵 توصيل', dine: '🪑 داخل المطعم', pickup: '🏠 استلام' };
+  const pill = document.getElementById('cartModePill');
+  if (pill) pill.textContent = labels[m];
+  setTimeout(() => document.getElementById('menu')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 250);
 }
 
-// ============================================
-// CART MANAGEMENT
-// ============================================
-function addToCart(name, price, emoji = '🍽️') {
-  const existing = cart.find(item => item.name === name);
-  if (existing) {
-    existing.qty += 1;
-  } else {
-    cart.push({ name, price, emoji, qty: 1, id: Date.now() });
-  }
-
+/* ── CART ── */
+function addToCart(name, price, img, emoji) {
+  const ex = cart.find(i => i.name === name);
+  if (ex) ex.qty++;
+  else cart.push({ id: Date.now(), name, price, img: img || '', emoji: emoji || '🍽️', qty: 1 });
   updateCartUI();
-  animateCartButton();
-  showAddFeedback(name);
+  bumpCartBtn();
+  showToast(name);
 }
-
-function removeFromCart(id) {
-  cart = cart.filter(item => item.id !== id);
-  updateCartUI();
-}
-
-function changeQty(id, delta) {
+function changeQty(id, d) {
   const item = cart.find(i => i.id === id);
   if (!item) return;
-  item.qty += delta;
-  if (item.qty <= 0) removeFromCart(id);
-  else updateCartUI();
+  item.qty += d;
+  if (item.qty <= 0) cart = cart.filter(i => i.id !== id);
+  updateCartUI();
 }
-
 function updateCartUI() {
-  const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
-  const count = cart.reduce((sum, item) => sum + item.qty, 0);
-
-  // Update count badges
-  document.getElementById('cartCount').textContent = count;
-  document.getElementById('floatCount').textContent = `${count} عنصر · ${total.toLocaleString('ar-IQ')} د`;
-
-  // Float button
-  const floatCart = document.getElementById('floatCart');
-  floatCart.style.display = count > 0 ? 'flex' : 'none';
-
-  // Cart drawer items
-  const cartItemsEl = document.getElementById('cartItems');
-  const cartFooter = document.getElementById('cartFooter');
-
-  if (cart.length === 0) {
-    cartItemsEl.innerHTML = `
-      <div class="cart-empty">
-        <span>🛒</span>
-        <p>سلتك فارغة</p>
-        <p class="cart-empty-en">Your cart is empty</p>
-      </div>`;
-    cartFooter.style.display = 'none';
+  const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+  const count = cart.reduce((s, i) => s + i.qty, 0);
+  ['cartCount'].forEach(id => { const el = document.getElementById(id); if (el) el.textContent = count; });
+  const fc = document.getElementById('floatCart');
+  if (fc) { fc.style.display = count > 0 ? 'flex' : 'none'; fc.querySelector('#floatCount').textContent = count + ' | ' + total.toLocaleString('ar-IQ') + ' د'; }
+  const ci = document.getElementById('cartItems');
+  const cf = document.getElementById('cartFooter');
+  if (!ci) return;
+  if (!cart.length) {
+    ci.innerHTML = `<div class="cart-empty"><span>🛒</span><p>سلتك فارغة</p><p class="en">Your cart is empty</p></div>`;
+    if (cf) cf.style.display = 'none';
   } else {
-    cartItemsEl.innerHTML = cart.map(item => `
+    ci.innerHTML = cart.map(item => `
       <div class="cart-item-row">
-        <div class="cart-item-emoji">${item.emoji}</div>
+        <div class="cart-item-img">${item.img ? `<img src="${item.img}" onerror="this.outerHTML='${item.emoji}'">` : item.emoji}</div>
         <div class="cart-item-info">
           <div class="cart-item-name">${item.name}</div>
           <div class="cart-item-price">${(item.price * item.qty).toLocaleString('ar-IQ')} دينار</div>
         </div>
         <div class="cart-qty">
-          <button class="qty-btn" onclick="changeQty(${item.id}, -1)">−</button>
+          <button class="qty-btn" onclick="changeQty(${item.id},-1)">−</button>
           <span class="qty-num">${item.qty}</span>
-          <button class="qty-btn" onclick="changeQty(${item.id}, +1)">+</button>
+          <button class="qty-btn" onclick="changeQty(${item.id},+1)">+</button>
         </div>
-      </div>
-    `).join('');
-    cartFooter.style.display = 'block';
-    document.getElementById('cartTotal').textContent = `${total.toLocaleString('ar-IQ')} دينار`;
+      </div>`).join('');
+    if (cf) { cf.style.display = 'block'; document.getElementById('cartTotal').textContent = total.toLocaleString('ar-IQ') + ' دينار'; }
   }
 }
-
-function animateCartButton() {
-  const btn = document.getElementById('cartBtn');
-  const count = document.getElementById('cartCount');
-  btn.style.transform = 'scale(1.2)';
-  count.classList.add('bump');
-  setTimeout(() => {
-    btn.style.transform = '';
-    count.classList.remove('bump');
-  }, 300);
+function bumpCartBtn() {
+  const b = document.getElementById('cartBtn'), c = document.getElementById('cartCount');
+  if (b) { b.style.transform = 'scale(1.25)'; setTimeout(() => b.style.transform = '', 300); }
+  if (c) { c.classList.add('bump'); setTimeout(() => c.classList.remove('bump'), 300); }
+}
+function showToast(name) {
+  const t = document.createElement('div');
+  t.style.cssText = 'position:fixed;bottom:5.5rem;left:50%;transform:translateX(-50%);background:#4A3428;color:#F8F5F0;padding:.65rem 1.4rem;border-radius:99px;font-size:.84rem;font-weight:600;z-index:3000;white-space:nowrap;box-shadow:0 8px 24px rgba(0,0,0,.2);border-right:3px solid #A3262A;animation:fadeSlideIn .3s ease';
+  t.textContent = '✓ أُضيف: ' + name;
+  document.body.appendChild(t);
+  setTimeout(() => t.remove(), 2000);
 }
 
-function showAddFeedback(name) {
-  const toast = document.createElement('div');
-  toast.className = 'add-toast';
-  toast.innerHTML = `✓ أُضيف: ${name}`;
-  toast.style.cssText = `
-    position: fixed; bottom: 5rem; left: 50%; transform: translateX(-50%);
-    background: var(--text-main); color: white; padding: 0.75rem 1.5rem;
-    border-radius: 99px; font-size: 0.88rem; font-weight: 600; z-index: 2000;
-    animation: floatUp 0.3s ease, fadeOut 0.4s ease 1.6s forwards;
-    white-space: nowrap; box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-    border-right: 3px solid var(--tanoor);
-  `;
-  document.body.appendChild(toast);
+/* ── CART DRAWER ── */
+function toggleCart()  { cartOpen ? closeCart() : openCart(); }
+function openCart()    { cartOpen = true; document.getElementById('cartDrawer').classList.add('open'); document.getElementById('cartOverlay').classList.add('open'); document.body.style.overflow = 'hidden'; document.getElementById('cartBtn').onclick = closeCart; }
+function closeCart()   { cartOpen = false; document.getElementById('cartDrawer').classList.remove('open'); document.getElementById('cartOverlay').classList.remove('open'); document.body.style.overflow = ''; document.getElementById('cartBtn').onclick = openCart; }
+document.getElementById('cartBtn').onclick = openCart;
 
-  // Add fadeOut keyframe if not exists
-  if (!document.getElementById('toastStyle')) {
-    const style = document.createElement('style');
-    style.id = 'toastStyle';
-    style.textContent = `@keyframes fadeOut { to { opacity: 0; transform: translateX(-50%) translateY(-10px); } }`;
-    document.head.appendChild(style);
-  }
-
-  setTimeout(() => toast.remove(), 2100);
-}
-
-// ============================================
-// CART DRAWER
-// ============================================
-function toggleCart() {
-  isCartOpen ? closeCart() : openCart();
-}
-
-function openCart() {
-  isCartOpen = true;
-  document.getElementById('cartDrawer').classList.add('open');
-  document.getElementById('cartOverlay').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeCart() {
-  isCartOpen = false;
-  document.getElementById('cartDrawer').classList.remove('open');
-  document.getElementById('cartOverlay').classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-document.getElementById('cartBtn')?.addEventListener('click', toggleCart);
-
-// ============================================
-// SEND ORDER TO WHATSAPP
-// ============================================
+/* ── WHATSAPP ── */
 function sendToWhatsApp() {
-  if (cart.length === 0) {
-    alert('سلتك فارغة! أضف أصنافاً أولاً.');
-    return;
-  }
-
+  if (!cart.length) { alert('سلتك فارغة!'); return; }
+  const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+  const modeLabel = { delivery: '🛵 توصيل', dine: '🪑 داخل المطعم', pickup: '🏠 استلام' }[orderMode];
   const note = document.getElementById('cartNote')?.value?.trim() || '';
-  const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
-
-  const modeLabels = {
-    delivery: '🛵 توصيل',
-    dine: '🪑 داخل المطعم',
-    pickup: '🏠 استلام'
-  };
-
-  let msg = `🔥 *طلب جديد - ${CONFIG.restaurantName}*\n`;
-  msg += `━━━━━━━━━━━━━━━━\n`;
-  msg += `📋 *نوع الطلب:* ${modeLabels[currentMode]}\n\n`;
-  msg += `🛒 *الأصناف:*\n`;
-
-  cart.forEach(item => {
-    msg += `  ${item.emoji} ${item.name}\n`;
-    msg += `     الكمية: ${item.qty}  |  السعر: ${(item.price * item.qty).toLocaleString('ar-IQ')} دينار\n`;
-  });
-
-  msg += `\n━━━━━━━━━━━━━━━━\n`;
-  msg += `💰 *المجموع: ${total.toLocaleString('ar-IQ')} دينار*\n`;
-
-  if (note) {
-    msg += `\n📝 *ملاحظات:*\n${note}\n`;
-  }
-
-  msg += `\n⏰ وقت الطلب: ${new Date().toLocaleTimeString('ar-IQ')}\n`;
-  msg += `━━━━━━━━━━━━━━━━\n`;
-  msg += `شكراً لاختيارك مطعم العريشة 🔥`;
-
-  const encoded = encodeURIComponent(msg);
-  const url = `https://wa.me/${CONFIG.whatsappNumber}?text=${encoded}`;
-  window.open(url, '_blank');
+  let msg = `🔥 *طلب جديد - مطعم العريشة*\n━━━━━━━━━━━━━━━\n📋 *نوع الطلب:* ${modeLabel}\n\n🛒 *الأصناف:*\n`;
+  cart.forEach(i => { msg += `  ${i.emoji} ${i.name}\n     الكمية: ${i.qty}  |  ${(i.price * i.qty).toLocaleString('ar-IQ')} دينار\n`; });
+  msg += `\n━━━━━━━━━━━━━━━\n💰 *المجموع: ${total.toLocaleString('ar-IQ')} دينار*\n`;
+  if (note) msg += `\n📝 *ملاحظات:*\n${note}\n`;
+  msg += `\n⏰ ${new Date().toLocaleTimeString('ar-IQ')}\n━━━━━━━━━━━━━━━\nشكراً لاختيارك مطعم العريشة 🔥`;
+  window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
 }
 
-// ============================================
-// LANGUAGE TOGGLE
-// ============================================
+/* ── LANG ── */
 function initLang() {
-  const btn = document.getElementById('langBtn');
-  if (!btn) return;
-
-  btn.addEventListener('click', () => {
-    currentLang = currentLang === 'ar' ? 'en' : 'ar';
-    btn.textContent = currentLang === 'ar' ? 'EN' : 'ع';
-
+  document.getElementById('langBtn')?.addEventListener('click', () => {
+    lang = lang === 'ar' ? 'en' : 'ar';
     const html = document.documentElement;
-    if (currentLang === 'en') {
-      html.setAttribute('dir', 'ltr');
-      html.setAttribute('lang', 'en');
-      document.body.classList.add('lang-en');
-    } else {
-      html.setAttribute('dir', 'rtl');
-      html.setAttribute('lang', 'ar');
-      document.body.classList.remove('lang-en');
-    }
+    html.setAttribute('lang', lang);
+    html.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+    document.getElementById('langBtn').textContent = lang === 'ar' ? 'EN' : 'ع';
+    document.body.classList.toggle('en-mode', lang === 'en');
   });
 }
-
-// ============================================
-// SMOOTH SCROLL FOR NAV LINKS
-// ============================================
-document.querySelectorAll('a[href^="#"]').forEach(link => {
-  link.addEventListener('click', (e) => {
-    const id = link.getAttribute('href');
-    if (id === '#') return;
-    const target = document.querySelector(id);
-    if (!target) return;
-    e.preventDefault();
-
-    const headerH = document.getElementById('header')?.offsetHeight || 70;
-    const top = target.getBoundingClientRect().top + window.scrollY - headerH - 10;
-    window.scrollTo({ top, behavior: 'smooth' });
-  });
-});
-
-// ============================================
-// TABS KEYBOARD NAVIGATION
-// ============================================
-document.getElementById('tabsWrapper')?.addEventListener('keydown', (e) => {
-  const tabs = [...document.querySelectorAll('.tab')];
-  const active = document.querySelector('.tab.active');
-  const idx = tabs.indexOf(active);
-
-  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-    e.preventDefault();
-    const next = tabs[(idx + 1) % tabs.length];
-    next?.click();
-  } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-    e.preventDefault();
-    const prev = tabs[(idx - 1 + tabs.length) % tabs.length];
-    prev?.click();
-  }
-});
-
-// ============================================
-// ENGLISH MODE STYLES
-// ============================================
-const enStyles = document.createElement('style');
-enStyles.textContent = `
-  .lang-en .hero-ar, .lang-en .hero-desc { display: none !important; }
-  .lang-en .hero-en, .lang-en .hero-desc-en { display: block !important; color: var(--text-mid); font-size: 1rem; }
-  .lang-en .tab-ar { display: none; }
-  .lang-en .tab-en { display: inline; font-size: 0.85rem; letter-spacing: 0; opacity: 1; }
-  .lang-en .logo-ar { display: none; }
-  .lang-en .logo-en { font-size: 1.2rem; font-weight: 700; color: var(--tanoor-dark); }
-  .lang-en .title-ar { display: none; }
-  .lang-en .title-en { font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 700; color: var(--text-main); letter-spacing: 0; text-transform: none; }
-  .lang-en .cat-title-en { font-size: clamp(1.8rem, 4vw, 2.8rem); color: white; font-weight: 700; display: block; letter-spacing: 0; text-transform: none; }
-  .lang-en .cat-title { font-size: 0; }
-  .lang-en .cat-title .cat-title-en { font-size: clamp(1.8rem, 4vw, 2.8rem); }
-`;
-document.head.appendChild(enStyles);
-
-// ============================================
-// PARALLAX HERO (subtle)
-// ============================================
-window.addEventListener('scroll', () => {
-  const hero = document.getElementById('hero');
-  if (!hero) return;
-  const scrolled = window.scrollY;
-  if (scrolled < window.innerHeight) {
-    hero.style.setProperty('--scroll', scrolled + 'px');
-  }
-}, { passive: true });
-
-// Add parallax variable support
-const parallaxStyle = document.createElement('style');
-parallaxStyle.textContent = `
-  #hero .hero-tanoor-bg {
-    transform: translateY(calc(var(--scroll, 0px) * 0.3));
-    will-change: transform;
-  }
-`;
-document.head.appendChild(parallaxStyle);
-
-// ============================================
-// ACTIVE NAV HIGHLIGHT ON SCROLL
-// ============================================
-const sections = ['hero', 'menu', 'about', 'contact'];
-const navLinks = document.querySelectorAll('.desktop-nav a');
-
-window.addEventListener('scroll', () => {
-  let current = '';
-  sections.forEach(id => {
-    const el = document.getElementById(id);
-    if (el && window.scrollY >= el.offsetTop - 150) {
-      current = id;
-    }
-  });
-  navLinks.forEach(link => {
-    link.style.color = link.getAttribute('href') === `#${current}` ? 'var(--tanoor)' : '';
-  });
-}, { passive: true });
-
-// ============================================
-// INIT
-// ============================================
-updateCartUI();
